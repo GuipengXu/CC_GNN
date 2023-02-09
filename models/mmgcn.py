@@ -1,9 +1,3 @@
-# coding: utf-8
-"""
-MMGCN: Multi-modal Graph Convolution Network for Personalized Recommendation of Micro-video. 
-In ACM MM`19,
-"""
-
 import os
 import numpy as np
 import scipy.sparse as sp

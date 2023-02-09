@@ -1,11 +1,3 @@
-# coding: utf-8
-# @email: enoche.chow@gmail.com
-r"""
-
-################################################
-paper:  Bootstrap Latent Representations for Multi-modal Recommendation
-https://arxiv.org/abs/2207.05969
-"""
 import os
 import copy
 import random
@@ -168,8 +160,6 @@ class BM3(GeneralRecommender):
         user_cl_loss = InfoNCE(n_user_u_e, n_user_u_e_1, 0.2)
         item_cl_loss = InfoNCE(n_item_u_e, n_item_u_e_1, 0.2)
         
-        # user_cl_loss = InfoNCE(user_u_e, user_u_e_1, 0.2)
-        # item_cl_loss = InfoNCE(item_u_e, item_u_e_1, 0.2)
         cl_loss = (user_cl_loss + item_cl_loss)
 
         u_online = u_online[users, :]

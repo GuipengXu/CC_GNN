@@ -1,11 +1,3 @@
-# coding: utf-8
-# @email: enoche.chow@gmail.com
-r"""
-VBPR -- Recommended version
-################################################
-Reference:
-VBPR: Visual Bayesian Personalized Ranking from Implicit Feedback -Ruining He, Julian McAuley. AAAI'16
-"""
 import numpy as np
 import os
 import torch

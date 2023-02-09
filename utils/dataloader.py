@@ -1,9 +1,3 @@
-# coding: utf-8
-# @email: enoche.chow@gmail.com
-"""
-Wrap dataset into dataloader
-################################################
-"""
 import math
 import torch
 import random
@@ -238,8 +232,6 @@ class TrainDataLoader(AbstractDataLoader):
         cold_tensor = torch.tensor(cur_data[self.config['COLD']].values).type(torch.LongTensor).to(self.device)
         warm_tensor = torch.tensor(cur_data[self.config['WARM']].values).type(torch.LongTensor).to(self.device)
 
-
-        # 数据输入！！
         batch_tensor = torch.cat(
                                     (
                                         torch.unsqueeze(user_tensor, 0),
@@ -283,8 +275,6 @@ class TrainDataLoader(AbstractDataLoader):
         cold_tensor = torch.tensor(cur_data[self.config['COLD']].values).type(torch.LongTensor).to(self.device)
         warm_tensor = torch.tensor(cur_data[self.config['WARM']].values).type(torch.LongTensor).to(self.device)
 
-
-        # 数据输入！！
         batch_tensor = torch.cat(
                                     (
                                         torch.unsqueeze(user_tensor, 0),

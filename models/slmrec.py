@@ -1,10 +1,3 @@
-# coding: utf-8
-#
-# Updated by enoche
-# Paper: Self-supervised Learning for Multimedia Recommendation
-# Github: https://github.com/zltao/SLMRec
-#
-
 import torch
 from torch import nn
 import numpy as np
@@ -286,12 +279,6 @@ class SLMRec(GeneralRecommender):
         v_loss = self.infonce_criterion(v_logits, v_labels)
         if self.config["dataset"] != "kwai":
             x_iv_iva = self.g_iv_iva(x_i_iv)
-            # x_a_iva = self.g_a_iva(self.a_emb_i[idx])
-            # a_logits = torch.mm(x_iv_iva, x_a_iva.T)
-            # a_logits /= self.ssl_temp
-            # a_labels = torch.tensor(list(range(x_iv_iva.shape[0]))).to(self.device)
-            # a_loss = self.infonce_criterion(a_logits, a_labels)
-            #
             x_iva_ivat = self.g_iva_ivat(x_iv_iva)
             x_t_ivat = self.g_t_ivat(self.t_emb_i[idx])
 
@@ -430,31 +417,8 @@ class SLMRec(GeneralRecommender):
             self.t_dense = nn.Linear(self.t_feat.shape[1], self.latent_dim)
             nn.init.xavier_uniform_(self.t_dense.weight)
             mul_modal_cnt += 1
-            # if self.config["dataset"] != "kwai":
-            #     if self.a_feat is not None:
-            #         self.a_feat = torch.nn.functional.normalize(self.a_feat, dim=1)
-            #     if self.config["dataset"] == "tiktok":
-            #         self.words_tensor = self.dataset.words_tensor.to(self.device)
-            #         self.word_embedding = torch.nn.Embedding(11574, 128).to(self.device)
-            #         torch.nn.init.xavier_normal_(self.word_embedding.weight)
-            #         self.t_feat = scatter(self.word_embedding(self.words_tensor[1]), self.words_tensor[0], reduce='mean',
-            #                               dim=0).to(self.device)
-            #     else:
-            #         self.t_feat = torch.nn.functional.normalize(self.dataset.t_feat.to(self.device).float(), dim=1)
-
-        # visual feature dense
-        # if self.config["data.input.dataset"] != "kwai":
-        #     # acoustic feature dense
-        #     self.a_dense = nn.Linear(self.a_feat.shape[1], self.latent_dim)
-        #     # textual feature dense
-        #     self.t_dense = nn.Linear(self.t_feat.shape[1], self.latent_dim)
 
         self.item_feat_dim = self.latent_dim * (mul_modal_cnt + 1)
-
-        # nn.init.xavier_uniform_(self.v_dense.weight)
-        # if self.config["data.input.dataset"] != "kwai":
-        #     nn.init.xavier_uniform_(self.a_dense.weight)
-        #     nn.init.xavier_uniform_(self.t_dense.weight)
 
         self.embedding_item_after_GCN = nn.Linear(self.item_feat_dim, self.latent_dim)
         self.embedding_user_after_GCN = nn.Linear(self.item_feat_dim, self.latent_dim)

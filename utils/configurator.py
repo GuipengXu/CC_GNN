@@ -1,10 +1,3 @@
-# coding: utf-8
-# @email: enoche.chow@gmail.com
-#
-"""
-################################
-"""
-
 import re
 import os
 import yaml

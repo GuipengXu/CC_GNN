@@ -1,5 +1,3 @@
-# coding: utf-8
-# @email: enoche.chow@gmail.com
 """
 modified from UNITER
 """
